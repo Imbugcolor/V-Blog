@@ -20,9 +20,9 @@
     </div>
     <div id="nav-menu" class="pd-l-50 pd-r-50">
         <nav id="categories">
-            <a class="home" href="#">Home</a>
+            <a class="home" href="index.php">Home</a>
                 <div class="subnav">
-                    <button class="subnavbtn">Kiếm tiền online <i class="fas fa-angle-down"></i></button>
+                    <button onclick="window.location.href='./pages/page1.php';" class="subnavbtn"> Kiếm tiền online <i class="fas fa-angle-down"></i></button>
                     <div class="subnav-content">
                         <a href="#">Kiếm tiền trên youtube</a><br>
                         <a href="#">Tiếp thị liên kết</a><br>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="subnav">
-                    <button class="subnavbtn">Tiền ảo <i class="fas fa-angle-down"></i></button>
+                    <button onclick="window.location.href='./pages/page2.php';" class="subnavbtn"> Tiền ảo <i class="fas fa-angle-down"></i></button>
                     <div class="subnav-content">
                         <a href="#">Bitcoin</a><br>
                         <a href="#">Altcoin</a><br>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="subnav">
-                    <button class="subnavbtn">Blog-website <i class="fas fa-angle-down"></i></button>
+                    <button onclick="window.location.href='./pages/page3.php';" class="subnavbtn"> Blog-website <i class="fas fa-angle-down"></i></button>
                     <div class="subnav-content">
                         <a href="#">Wordpress</a><br>
                         <a href="#">Blogspot</a><br>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="subnav">
-                    <button class="subnavbtn">Thủ thuật <i class="fas fa-angle-down"></i></button>
+                    <button onclick="window.location.href='./pages/page4.php';" class="subnavbtn"> Thủ thuật <i class="fas fa-angle-down"></i></button>
                     <div class="subnav-content">
                         <a href="#">Thủ thuật máy tínhh</a><br>
                         <a href="#">Thủ thuật điện thoại</a><br>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="subnav">
-                    <button class="subnavbtn">Ngoài lề <i class="fas fa-angle-down"></i></button>
+                    <button onclick="window.location.href='./pages/page5.php';" class="subnavbtn"> Ngoài lề <i class="fas fa-angle-down"></i></button>
                     <div class="subnav-content">
                         <a href="#">Mua sắm</a><br>
                         <a href="#">Giải trí</a><br>

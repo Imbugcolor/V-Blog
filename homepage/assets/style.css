@@ -17,7 +17,7 @@
     box-sizing: border-box;
     outline: none; border:none;
     text-decoration: none;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .pd-l-50{
@@ -304,3 +304,55 @@
     
 }
 /* End Section - post - 2 */
+
+/***************************************** Page 1 CSS ******************************************************/
+#container{
+    margin-top: 50px;
+}
+
+#about-menu-list-post .menu-tag .name{
+    font-size: 28px;
+    font-weight: bolder;
+}
+#about-menu-list-post .about-tag {
+    margin-top: 15px;
+}
+#about-menu-list-post .about-tag .about{
+    font-size: 16px;
+    font-style: italic;
+    color: #777;
+}
+#all-post-list-menu .item-all-post .thumb-item-all-post img{
+    width: 100%;
+    height: auto;
+}
+.item-all-post{
+    margin-top: 25px;
+}
+.title-item-all-post{
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+}
+.title-item-all-post a{
+    text-decoration: none;
+    color:#000;
+}
+.title-item-all-post a:hover{
+    color: #0180c3;
+}
+.author-item-all-post{
+    float: left;
+    margin-right: 5px;
+}
+.author-item-all-post, .time-create-item-all-post{
+    margin-top: 8px;
+    opacity: 0.9;
+    font-size: 14px;
+}
+.about-cont-item-all-post{
+    margin-top: 7px;
+    font-size: 18px;
+    opacity: 0.7;
+}
+/*****************************************END Page 1 CSS ******************************************************/
