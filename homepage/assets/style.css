@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root{
+    --color-txt:#FF4F5B;
+    --bg-body: #fafbfd;
+    --bg-content: #ffffff;
+    --bg-hover: #f4f4f4;
+    --color-txt: #172b4d;
+    --nav-height: 70px;
+    --shadow: 0 0 30px 0 rgb(82 63 105 / 5%);
+}
+
+*{
+    font-family: 'Mulish', sans-serif ; 
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.pd-l-50{
+    padding-left: 50px;
+}
+
+.pd-r-50{
+    padding-right: 50px;
+} 
+
+#banner{
+    width: 100%;
+    height: 80px;
+}
+#banner a{
+    text-decoration: none;
+    color:#172b4d;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 80px;
+}
+#nav-menu{
+    width: 100%;
+    background: rgb(65,88,208);
+    display: flex;
+    z-index: 1001;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nav-menu a{
+    float: left;
+    padding: 14px 16px;
+}
+#nav-menu .home{
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+}
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+  
+  /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 60px;
+}
+  /* The subnavigation menu */
+.subnav {
+    float: left;
+    overflow: hidden;
+}
+  
+  /* Subnav button */
+.subnav .subnavbtn {
+    position: relative;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+  /* Add a red background color to navigation links on hover */
+#nav-menu .home:hover, .subnav:hover .subnavbtn {
+    background-color: #FF4F5B;
+    cursor: pointer;
+}
+  
+  /* Style the subnav content - positioned absolute */
+.subnav-content {
+    display: none;
+    position: absolute;
+    left: inherit;
+    background-color: #fff;
+    width: inherit;
+    padding-top: 15px;
+    z-index: 1;
+}
+  
+  /* Style the subnav links */
+.subnav-content a {
+    float: left;
+    color: black;
+    text-decoration: none;
+}
+.subnav-content:hover{
+    cursor: pointer;
+} 
+  /* Add a grey background color on hover */
+.subnav-content a:hover {
+    color: rgb(65,88,208);
+}
+  
+  /* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+    display: block;
+    box-shadow: 1px 1px 4px rgb(0 0 0 / 15%);
+}
+
+/* Home main post */
+#new-post-section{
+    margin-top: 50px;
+}
+
+.new-post-wrapper{
+    
+}
+
+.new-post-wrapper .main-new-post .thumb-post{
+    position: relative;
+}
+.new-post-wrapper .main-new-post .thumb-post img{
+    max-height: 420px;
+    width: 100%;
+}
+.new-post-wrapper .main-new-post .thumb-post::before{
+    background-image: linear-gradient( rgba(0, 0, 0 , .1), rgba(0,0,0,.8));
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.new-post-wrapper .main-new-post .d-post{
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+
+}
+.new-post-wrapper .main-new-post .d-post .title-post{
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+.new-post-wrapper .main-new-post .d-post, .main-new-post .cont-post{
+    color:#fff;
+    font-size: 16px;
+} 
+.main-new-post .tag-post, .main-new-post .time-post{
+    color: #888;
+    font-size: 16px;
+}
+.new-post-wrapper .main-new-post .d-post .author{
+    color:#FF4F5B;
+    font-weight: bold;
+}
+
+.item-post .thumb-post img{
+    width: 100%;
+    max-height: 180px;
+    min-height: 180px;
+}
+
+.other-new-post{
+    padding: 0 15px;
+    margin-top: 25px;
+}
+.item-post .title-post{
+    text-transform: none;
+    margin: 10px 0;
+    color: var(--color-txt);
+    min-height: 48px;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.item-post .cont-post{
+    text-transform: none;
+    font-size: 14px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.item-post .author, .item-post .time-post{
+    color: #888;
+}
+.createby {
+    margin-bottom: 30px;
+    padding-top: 15px;
+    display: flex;
+    float: right;
+    font-size: 14px;
+    cursor: default;
+}
+.createby .author{
+    margin-right: 10px;
+}
+/* End Home main post */
+
+/* other post side list */
+.name-side-list::after{
+    content: "";
+    display: block;
+    height: 3px;
+    width: 150px;
+    margin-top: 8px;
+    position: absolute;
+    background-color: #0180c3;
+}
+
+.list-post-other-wrapper{
+    margin-top: 25px;
+}
+
+.list-post-other-wrapper .other-thumb-post img{
+    width: 100%;
+    min-height: 80px;
+    max-height: 80px;
+}
+.list-post-other-wrapper .other-d-post a{
+    color: #000;
+    font-weight: bold;
+}
+.list-post-other-wrapper .other-d-post .time-create-other-post{
+    margin-top: 10px;
+    color: #888;
+    font-size: 14px;
+}
+
+/* End other post side list */
+
+/* Section - post - 2 */
+#section-post-2{
+
+}
+#list-post-wrapper .tag-title::after{
+    content: "";
+    display: block;
+    height: 3px;
+    width: 150px;
+    position: absolute;
+    margin-top: 8px;
+    background-color: #0180c3;
+}
+#list-post-wrapper .list-post .post-item{
+    margin-top: 25px;
+}
+
+#list-post-wrapper .list-post .post-item img{
+    width: 100%;
+    max-height: 200px;
+    min-height: 200px;
+}
+#list-post-wrapper .list-post .title-post-item a{
+    text-decoration: none;
+    color: #172b4d;
+    font-weight: bold;
+    font-size: 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+#list-post-wrapper .list-post .author-post-item{  
+    float: left;
+    padding-right: 5px;
+}
+#list-post-wrapper .list-post .time-post-item{
+    float: left;
+}
+
+#list-post-wrapper .list-post .time-post-item span,
+#list-post-wrapper .list-post .author-post-item span{
+    color: #888;
+    font-size: 14px;
+    
+}
+/* End Section - post - 2 */
