@@ -285,6 +285,10 @@
 .list-post-other-wrapper .other-d-post a{
     color: #172b4d;
     font-weight: bold;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
     transition: 0.2s;
 }
 .list-post-other-wrapper .other-d-post a:hover{
@@ -386,6 +390,10 @@
     text-decoration: none;
     color: #172b4d;
     transition: 0.2s;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .title-item-all-post a:hover{
@@ -424,6 +432,12 @@
 .post-border-item{
     padding: 15px 0;
     box-shadow: 0 1px 8px rgb(0 0 0 / 8%), 0 3px 4px rgb(0 0 0 / 8%), 0 3px 3px rgb(0 0 0 / 12%);
+}
+.about-cont-item-all-post{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 /*****************************************END Page 1 CSS ******************************************************/
 

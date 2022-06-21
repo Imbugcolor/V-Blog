@@ -22,7 +22,7 @@
                 if($level==$prelevel){
                     $html.='</li>';
                 }
-                $html.='<li><a href="page1.php?tag_id='.$id.'">'.$data['tag_name'].' <span class="caret"></span></a>';
+                $html.='<li><a href="page1.php?tag_id='.$id.'&parent_id='.$parent.'">'.$data['tag_name'].' <span class="caret"></span></a>';
                 if($level>$prelevel){
                     $prelevel=$level;
                 }
