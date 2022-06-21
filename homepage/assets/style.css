@@ -27,11 +27,20 @@
 .pd-r-50{
     padding-right: 50px;
 } 
-
+.pd-l-15{
+    padding-left: 15px;
+}
+.pd-r-15{
+    padding-right: 15px;
+}
+.mg-t-25{
+    margin-top: 25px;
+}
 #banner{
     width: 100%;
     height: 80px;
 }
+
 #banner a{
     text-decoration: none;
     color:#172b4d;
@@ -39,23 +48,62 @@
     font-weight: bold;
     line-height: 80px;
 }
-#nav-menu{
+
+/*==================
+ NAVBAR SECTION
+====================*/
+
+#menu {
+    display: inline;
+    float: left;
     width: 100%;
-    background: rgb(65,88,208);
-    display: flex;
     z-index: 1001;
-    align-items: center;
-    justify-content: space-between;
+}
+#menu .menu-area {
+    float: left;
+    display: inline;
+    width: 100%;
+}
+#menu .menu-area .navbar-default {
+    background-color: transparent;
+    border: medium none;
+    border-radius: 0;
+    margin-bottom: 0;
+    min-height: auto;
+}
+#menu .menu-area .navbar-default .navbar-nav {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+#menu .menu-area .navbar-default .navbar-nav li a {
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#menu .menu-area .navbar-default .navbar-nav .open a {
+    background-color: #fff;
+}
+#menu .menu-area .navbar-default .navbar-nav .dropdown-menu li a {
+    padding: 8px 15px;
 }
 
-#nav-menu a{
-    float: left;
-    padding: 14px 16px;
+#menu .menu-area .navbar-default .navbar-nav .dropdown-menu li a:hover, #menu .menu-area .navbar-default .navbar-nav .dropdown-menu li a:focus {
+    color: #fff; 
 }
-#nav-menu .home{
-    color: #fff;
-    font-weight: bold;
+#menu .menu-area .navbar-default .navbar-nav .dropdown-menu .dropdown-header {
+    color: #555;
+    display: block;
     font-size: 16px;
+    padding: 3px 20px;
+    text-transform: uppercase;
 }
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .sticky {
@@ -69,61 +117,9 @@
     padding-top: 60px;
 }
   /* The subnavigation menu */
-.subnav {
-    float: left;
-    overflow: hidden;
-}
-  
-  /* Subnav button */
-.subnav .subnavbtn {
-    position: relative;
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    font-weight: bold;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
-
-  /* Add a red background color to navigation links on hover */
-#nav-menu .home:hover, .subnav:hover .subnavbtn {
-    background-color: #FF4F5B;
-    cursor: pointer;
-}
-  
-  /* Style the subnav content - positioned absolute */
-.subnav-content {
-    display: none;
-    position: absolute;
-    left: inherit;
-    background-color: #fff;
-    width: inherit;
-    padding-top: 15px;
-    z-index: 1;
-}
-  
-  /* Style the subnav links */
-.subnav-content a {
-    float: left;
-    color: black;
-    text-decoration: none;
-}
-.subnav-content:hover{
-    cursor: pointer;
-} 
-  /* Add a grey background color on hover */
-.subnav-content a:hover {
-    color: rgb(65,88,208);
-}
-  
-  /* When you move the mouse over the subnav container, open the subnav content */
-.subnav:hover .subnav-content {
-    display: block;
-    box-shadow: 1px 1px 4px rgb(0 0 0 / 15%);
-}
+/*==================
+ END NAVBAR SECTION
+====================*/
 
 /* Home main post */
 #new-post-section{
@@ -131,24 +127,61 @@
 }
 
 .new-post-wrapper{
-    
+    padding: 0 15px;
+    box-shadow: 0 1px 8px rgb(0 0 0 / 8%), 0 3px 4px rgb(0 0 0 / 8%), 0 3px 3px rgb(0 0 0 / 12%);
 }
 
-.new-post-wrapper .main-new-post .thumb-post{
+.new-post-wrapper .main-new-post{
+    height: 400px;
+    width: 100%;
     position: relative;
+    overflow: hidden;
+}
+.main-new-post:hover .highlight_layer{
+    margin-top: -15px;
+}
+.new-post-wrapper .main-new-post .thumb-post{
+
+}
+.new-post-wrapper .main-new-post .thumb-post{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 .new-post-wrapper .main-new-post .thumb-post img{
-    max-height: 420px;
     width: 100%;
+    height: 400px;
 }
-.new-post-wrapper .main-new-post .thumb-post::before{
-    background-image: linear-gradient( rgba(0, 0, 0 , .1), rgba(0,0,0,.8));
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 100%;
-    width: 100%;
+.highlight_layer{
+    background: linear-gradient(0deg,rgba(9,9,9,.7),rgba(9,9,9,.7));
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.2s;
+}
+.highlight_content{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+}
+.d-cat{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.highlight_content .d-cat span{
+    background: #dd4b4b;
+    letter-spacing: 1px;
+    padding: 0 13px;
 }
 .new-post-wrapper .main-new-post .d-post{
     position: absolute;
@@ -226,6 +259,10 @@
 /* End Home main post */
 
 /* other post side list */
+.other-post{
+    
+}
+
 .name-side-list::after{
     content: "";
     display: block;
@@ -246,8 +283,12 @@
     max-height: 80px;
 }
 .list-post-other-wrapper .other-d-post a{
-    color: #000;
+    color: #172b4d;
     font-weight: bold;
+    transition: 0.2s;
+}
+.list-post-other-wrapper .other-d-post a:hover{
+    color:#0180c3;
 }
 .list-post-other-wrapper .other-d-post .time-create-other-post{
     margin-top: 10px;
@@ -259,8 +300,12 @@
 
 /* Section - post - 2 */
 #section-post-2{
-
+    margin-top: 25px;
 }
+#list-post-wrapper{
+    box-shadow: 0 1px 8px rgb(0 0 0 / 8%), 0 3px 4px rgb(0 0 0 / 8%), 0 3px 3px rgb(0 0 0 / 12%);
+}
+
 #list-post-wrapper .tag-title::after{
     content: "";
     display: block;
@@ -279,7 +324,7 @@
     max-height: 200px;
     min-height: 200px;
 }
-#list-post-wrapper .list-post .title-post-item a{
+.title-post-item a{
     text-decoration: none;
     color: #172b4d;
     font-weight: bold;
@@ -288,7 +333,13 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    transition: 0.2s;
 }
+
+.title-post-item a:hover{
+    color:#0180c3;
+}
+
 #list-post-wrapper .list-post .author-post-item{  
     float: left;
     padding-right: 5px;
@@ -306,8 +357,8 @@
 /* End Section - post - 2 */
 
 /***************************************** Page 1 CSS ******************************************************/
-#container{
-    margin-top: 50px;
+#page-view-container{
+    margin-top: 100px;
 }
 
 #about-menu-list-post .menu-tag .name{
@@ -324,20 +375,19 @@
 }
 #all-post-list-menu .item-all-post .thumb-item-all-post img{
     width: 100%;
-    height: auto;
+    max-height: 300px;
 }
 .item-all-post{
     margin-top: 25px;
 }
-.title-item-all-post{
+.title-item-all-post a{
     font-size: 22px;
     font-weight: bold;
-    color: #000;
-}
-.title-item-all-post a{
     text-decoration: none;
-    color:#000;
+    color: #172b4d;
+    transition: 0.2s;
 }
+
 .title-item-all-post a:hover{
     color: #0180c3;
 }
@@ -355,4 +405,79 @@
     font-size: 18px;
     opacity: 0.7;
 }
+
+.create-by-feature-post{
+    margin-top: 5px;
+    float: right;
+    color: #777;
+}
+.thumb-feature-post img{
+    width: 100%;
+    height: auto;
+}
+.title-post-item .tag-post{
+    font-size: 14px;
+    color: #eca829;
+    font-weight: normal;
+    padding: 5px 0;
+}
+.post-border-item{
+    padding: 15px 0;
+    box-shadow: 0 1px 8px rgb(0 0 0 / 8%), 0 3px 4px rgb(0 0 0 / 8%), 0 3px 3px rgb(0 0 0 / 12%);
+}
 /*****************************************END Page 1 CSS ******************************************************/
+
+/* Responsive */
+@media (max-width:1280px) {
+    
+}
+
+@media (max-width:991px){
+    #new-post-section{
+        margin-top: 100px;
+    }
+    #all-post-list-menu .item-all-post .thumb-item-all-post img {
+        width: 100%;
+        max-height: 400px;
+    }
+}
+
+@media (max-width:740px){
+    #banner,#new-post-section,#section-post-2{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #new-post-section{
+        margin-top: 100px;
+    }
+
+    .list-post-other-wrapper .other-thumb-post img {
+        min-height: unset;
+        max-height: unset;        
+    }
+    #list-post-wrapper .list-post .post-item img{
+        min-height: unset;
+        max-height: unset;
+    }
+    #page-view-container{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media (max-width:500px){
+    #banner,#new-post-section,#section-post-2{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    #new-post-section{
+        margin-top: 100px;
+    }
+    
+    #page-view-container{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+/* END Responsive */

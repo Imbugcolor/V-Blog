@@ -1,3 +1,42 @@
+<?php
+    include("conn.php");
+    $res=mysqli_query($connect,"select * from tag"); 
+    $arr=[];
+    while($row=mysqli_fetch_assoc($res)){
+        $arr[$row['tag_id']]['tag_name']=$row['tag_name'];
+        $arr[$row['tag_id']]['parent_id']=$row['parent_id'];
+    }
+    $html='';
+    function buildTreeView($arr,$parent,$level=0,$prelevel= -1){
+        global $html;
+        foreach($arr as $id=>$data){
+            if($parent==$data['parent_id']){
+                if($level>$prelevel){
+                    if($html==''){
+                        $html.='<ul class="nav navbar-nav"><li><a href="index.php">Home</a>';                      
+                    }else{
+                        $html.='<ul class="dropdown-menu">';
+                    }
+                    
+                }
+                if($level==$prelevel){
+                    $html.='</li>';
+                }
+                $html.='<li><a href="./pages/page1.php?tag_id='.$id.'">'.$data['tag_name'].' <span class="caret"></span></a>';
+                if($level>$prelevel){
+                    $prelevel=$level;
+                }
+                $level++;
+                buildTreeView($arr,$id,$level,$prelevel);
+                $level--;
+            }
+        }
+        if($level==$prelevel){
+            $html.='</li></ul>';
+        }
+        return $html;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +45,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--bootstrap jquery file link-->
+    <link href="./assets/bootstrap.css" rel="stylesheet">
+    <link href="./assets/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+    <link id="switcher" href="./assets/theme-color/default-theme.css" rel="stylesheet">
     <!--css,grid file link-->
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/grid.css">
@@ -18,70 +61,58 @@
     <div id="banner" class="pd-l-50 pd-r-50">
         <a href="#">V-BLOG</a>
     </div>
-    <div id="nav-menu" class="pd-l-50 pd-r-50">
-        <nav id="categories">
-            <a class="home" href="index.php">Home</a>
-                <div class="subnav">
-                    <button onclick="window.location.href='./pages/page1.php';" class="subnavbtn"> Kiếm tiền online <i class="fas fa-angle-down"></i></button>
-                    <div class="subnav-content">
-                        <a href="#">Kiếm tiền trên youtube</a><br>
-                        <a href="#">Tiếp thị liên kết</a><br>
-                        <a href="#">Kiếm tiền từ blog</a><br>
-                    </div>
-                </div>
-                <div class="subnav">
-                    <button onclick="window.location.href='./pages/page2.php';" class="subnavbtn"> Tiền ảo <i class="fas fa-angle-down"></i></button>
-                    <div class="subnav-content">
-                        <a href="#">Bitcoin</a><br>
-                        <a href="#">Altcoin</a><br>
-                        <a href="#">Sàn giao dịch</a><br> 
-                    </div>
-                </div>
-                <div class="subnav">
-                    <button onclick="window.location.href='./pages/page3.php';" class="subnavbtn"> Blog-website <i class="fas fa-angle-down"></i></button>
-                    <div class="subnav-content">
-                        <a href="#">Wordpress</a><br>
-                        <a href="#">Blogspot</a><br>
-                        <a href="#">Hosting-Domain</a><br>
-                        <a href="#">SEO</a><br>
-                    </div>
-                </div>
-                <div class="subnav">
-                    <button onclick="window.location.href='./pages/page4.php';" class="subnavbtn"> Thủ thuật <i class="fas fa-angle-down"></i></button>
-                    <div class="subnav-content">
-                        <a href="#">Thủ thuật máy tínhh</a><br>
-                        <a href="#">Thủ thuật điện thoại</a><br>
-                        <a href="#">Phần mềm</a><br>
-                        <a href="#">Facebook</a><br>
-                        <a href="#">Tài chính online</a><br>
-                    </div>
-                </div>
-                <div class="subnav">
-                    <button onclick="window.location.href='./pages/page5.php';" class="subnavbtn"> Ngoài lề <i class="fas fa-angle-down"></i></button>
-                    <div class="subnav-content">
-                        <a href="#">Mua sắm</a><br>
-                        <a href="#">Giải trí</a><br>
-                    </div>
-                </div>
-        </nav>
-    </div>
+    <section id="menu">
+         <div class="container">
+            <div class="menu-area">
+               <!-- Navbar -->
+               <div class="navbar navbar-default" role="navigation">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                     <span class="sr-only">Toggle navigation</span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     </button>          
+                  </div>
+                  <div class="navbar-collapse collapse">                                
+                     <?php 
+					 echo buildTreeView($arr,0);
+					 ?>            
+                  </div>
+                  <!--/.nav-collapse -->
+               </div>
+            </div>
+         </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./assets/js/bootstrap.js"></script>  
+    <script type="text/javascript" src="./assets/js/jquery.smartmenus.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery.smartmenus.bootstrap.js"></script>  
     <div id="new-post-section" class="pd-l-50 pd-r-50">
         <div class="new-post-wrapper">
             <div class="row">
-                <div class="new-post col-8">
+                <div class="new-post col-8 col-md-12 col-sm-12">
                     <div class="main-new-post col-12">
-                        <div class="thumb-post">
-                            <a href="">
-                                <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
-                            </a>
-                            <div class="d-post">
-                                <a href="" class="title-post">
-                                    Infina là gì? Infina lừa đảo không? Có nên đầu tư trên Infina?</a>
-                                <p class="tag-post">Ngoài lề</p>
-                                <span class="author">Đinh Hoàng Việt</span>
-                                <span class="time-post"> 1 giờ trước</span>
+                        <a href="#">
+                            <div class="thumb-post">  
+                                <img src="./assets/image/namecheap.jpg" alt="">
                             </div>
-                        </div> 
+                            <div class="highlight_layer">
+                                    
+                            </div> 
+                            <div class="highlight_content">
+                                <div class="d-post">
+                                    <div class="d-cat">
+                                        <span></span>
+                                    </div>
+                                    <p class="title-post">
+                                    Name Cheap là gì? Có nên mua tên miền của Name Cheap?</p>
+                                    <p class="tag-post">Ngoài lề</p>
+                                    <span class="author">Đinh Hoàng Việt</span>
+                                    <span class="time-post"> 1 giờ trước</span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="other-new-post slick-slider row">
                         <div class="item-post col-4 col-md-6 col-sm-12">
@@ -184,7 +215,7 @@
                     </div>
                     
                 </div>
-                <div class="other-post col-4">
+                <div class="other-post col-4 col-md-6 col-sm-12">
                     <h3 class="name-side-list">Bài viết khác</h3>
                     <div class="list-post-other-wrapper row">
                         <div class="other-thumb-post col-4">
@@ -242,13 +273,13 @@
         </div>
     </div>
     <div id="section-post-2" class="pd-l-50 pd-r-50">
-        <div id="list-post-wrapper">
+        <div id="list-post-wrapper" class="pd-l-15 pd-r-15">
             <h3 class="tag-title">
                 Blog-Website
             </h3>
             <div class="list-post">
                 <div class="row">
-                    <div class="post-item col-3 col-md-4 col-sm-6">
+                    <div class="post-item col-3 col-md-6 col-sm-12">
                         <div class="thumb-post-item">
                             <a href="">
                                 <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
@@ -264,7 +295,7 @@
                             <span>14/06/2022</span>
                         </div>
                     </div>
-                    <div class="post-item col-3 col-md-4 col-sm-6">
+                    <div class="post-item col-3 col-md-6 col-sm-12">
                         <div class="thumb-post-item">
                             <a href="">
                                 <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
@@ -280,7 +311,7 @@
                             <span>14/06/2022</span>
                         </div>
                     </div>
-                    <div class="post-item col-3 col-md-4 col-sm-6">
+                    <div class="post-item col-3 col-md-6 col-sm-12">
                         <div class="thumb-post-item">
                             <a href="">
                                 <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
@@ -296,7 +327,7 @@
                             <span>14/06/2022</span>
                         </div>
                     </div>
-                    <div class="post-item col-3 col-md-4 col-sm-6">
+                    <div class="post-item col-3 col-md-6 col-sm-12">
                         <div class="thumb-post-item">
                             <a href="">
                                 <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
@@ -312,7 +343,7 @@
                             <span>14/06/2022</span>
                         </div>
                     </div>
-                    <div class="post-item col-3 col-md-4 col-sm-6">
+                    <div class="post-item col-3 col-md-6 col-sm-12">
                         <div class="thumb-post-item">
                             <a href="">
                                 <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
@@ -341,7 +372,7 @@
     window.onscroll = function() {myFunction()};
 
     // Get the navbar
-    var navbar = document.getElementById("nav-menu");
+    var navbar = document.getElementById("menu");
 
     // Get the offset position of the navbar
     var sticky = navbar.offsetTop;
@@ -371,14 +402,6 @@
             autoplay: true,
             infinite: true,
             dots: true
-        }
-        },
-        {
-        breakpoint: 600,
-        settings: {
-            slidesToShow: 1,
-            autoplay: true,
-            slidesToScroll: 1
         }
         },
         {
