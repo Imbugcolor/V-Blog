@@ -264,12 +264,19 @@
     line-height: 24px;
     font-size: 16px;
     font-weight: bold;
+}
+.line-clamp-3{
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
-
+.line-clamp-2{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
 .item-post .cont-post{
     text-transform: none;
     font-size: 14px;
@@ -297,7 +304,7 @@
 
 /* other post side list */
 .other-post{
-    
+    padding-bottom: 50px !important;
 }
 
 .name-side-list::after{

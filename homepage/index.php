@@ -114,10 +114,16 @@
         <div class="new-post-wrapper">
             <div class="row">
                 <div class="new-post col-8 col-md-12 col-sm-12">
+                    <?php 
+                        //newest post query
+                        $newest_sl = "SELECT * FROM `posts`,`tag` WHERE `posts`.parent_id = `tag`.parent_id ORDER BY post_createdTime DESC LIMIT 1";
+                        $newest_rsl = mysqli_query($connect,$newest_sl);
+                        while($rec = mysqli_fetch_array($newest_rsl)){
+                    ?>
                     <div class="main-new-post col-12">
-                        <a href="#">
+                        <a href="./pages/post.php?post_id=<?=$rec['post_id']?>">
                             <div class="thumb-post">  
-                                <img src="./assets/image/namecheap.jpg" alt="">
+                                <img src="./assets/image/<?=$rec['post_thumbnail']?>" alt="">
                             </div>
                             <div class="highlight_layer">
                                     
@@ -127,169 +133,75 @@
                                     <div class="d-cat">
                                         <span></span>
                                     </div>
-                                    <p class="title-post">
-                                    Name Cheap là gì? Có nên mua tên miền của Name Cheap?</p>
-                                    <p class="tag-post">Ngoài lề</p>
-                                    <span class="author">Đinh Hoàng Việt</span>
-                                    <span class="time-post"> 1 giờ trước</span>
+                                    <p class="title-post"><?=$rec['post_title']?></p>
+                                    <p class="tag-post"><?=$rec['tag_name']?></p>
+                                    <span class="author"><?=$rec['post_author']?></span>
+                                    <span class="time-post"> <?=$rec['post_createdTime']?></span>
                                 </div>
                             </div>
                         </a>
                     </div>
+                    <?php } ?>
                     <div class="other-new-post slick-slider row">
+                        <?php 
+                            //newest post query
+                            $newest_sl = "SELECT * FROM `posts` ORDER BY post_createdTime DESC LIMIT 1,4";
+                            $newest_rsl = mysqli_query($connect,$newest_sl);
+                            while($rec = mysqli_fetch_array($newest_rsl)){
+                        ?>
                         <div class="item-post col-4 col-md-6 col-sm-12">
                             <div class="thumb-post">
-                                <a href="">
-                                    <img src="./assets/image/dong-thue-thu-nhap-youtube-tai-viet-nam.jpg" alt="">
+                                <a href="./pages/post.php?post_id=<?=$rec['post_id']?>">
+                                    <img src="./assets/image/<?=$rec['post_thumbnail']?>" alt="">
                                 </a>
                             </div>
                             <div class="d-post">
-                                <a href="" class="title-post">
-                                    Nộp thuế thu nhập Youtube tại Việt Nam như thế nào?
+                                <a href="./pages/post.php?post_id=<?=$rec['post_id']?>" class="title-post line-clamp-2">
+                                    <?=$rec['post_title']?>
                                 </a>
-                                <p class="cont-post">Nếu bạn đang làm Youtube, có thu nhập từ Youtube chắc hẳn đang quan tâm đến vấn đề thuế: Làm Youtube có cần nộp...</p>
+                                <p class="cont-post"><?=$rec['post_description']?></p>
                             </div>
                             <div class="createby">
                                 <div class="author">
                                     <span>
-                                        Đinh Hoàng Việt
+                                        <?=$rec['post_author']?>
                                     </span>
                                 </div>
   
                                 <span class="time-post">
-                                     1 giờ trước
+                                    <?=$rec['post_createdTime']?>
                                 </span>
                             </div>
                         </div>
-                        <div class="item-post col-4 col-md-6 col-sm-12">
-                            <div class="thumb-post">
-                                <a href="">
-                                    <img src="./assets/image/dong-thue-thu-nhap-youtube-tai-viet-nam.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="d-post">
-                                <a href="" class="title-post">
-                                    Nộp thuế thu nhập Youtube tại Việt Nam như thế nào?
-                                </a>
-                                <p class="cont-post">Nếu bạn đang làm Youtube, có thu nhập từ Youtube chắc hẳn đang quan tâm đến vấn đề thuế: Làm Youtube có cần nộp...</p>
-                            </div>
-                            <div class="createby">
-                                <div class="author">
-                                    <span>
-                                        Đinh Hoàng Việt
-                                    </span>
-                                </div>
-  
-                                <span class="time-post">
-                                     1 giờ trước
-                                </span>
-                            </div>
-                        </div>
-                        <div class="item-post col-4 col-md-6 col-sm-12">
-                            <div class="thumb-post">
-                                <a href="">
-                                    <img src="./assets/image/Untitled-design-113.png" alt="">
-                                </a>
-                            </div>
-                            <div class="d-post">
-                                <a href="" class="title-post">
-                                    Nộp thuế thu nhập Youtube tại Việt Nam như thế nào?
-                                </a>
-                                <p class="cont-post">Nếu bạn đang làm Youtube, có thu nhập từ Youtube chắc hẳn đang quan tâm đến vấn đề thuế: Làm Youtube có cần nộp...</p>
-                            </div>
-                            <div class="createby">
-                                <div class="author">
-                                    <span>
-                                        Đinh Hoàng Việt
-                                    </span>
-                                </div>
-                                
-                                <span class="time-post">
-                                     1 giờ trước
-                                </span>
-                            </div>
-                        </div>
-                        <div class="item-post col-4 col-md-6 col-sm-12">
-                            <div class="thumb-post">
-                                <a href="">
-                                    <img src="./assets/image/11_2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="d-post">
-                                <a href="" class="title-post">
-                                    Nộp thuế thu nhập Youtube tại Việt Nam như thế nào?
-                                </a>
-                                <p class="cont-post">Nếu bạn đang làm Youtube, có thu nhập từ Youtube chắc hẳn đang quan tâm đến vấn đề thuế: Làm Youtube có cần nộp...</p>
-                            </div>
-                            <div class="createby">
-                                <div class="author">
-                                    <span>
-                                        Đinh Hoàng Việt
-                                    </span>
-                                </div>
-                                
-                                <span class="time-post">
-                                     1 giờ trước
-                                </span>
-                            </div>
-                        </div>
-     
-                    </div>
-                    
+                        <?php } ?>                      
+                    </div>                 
                 </div>
                 <div class="other-post col-4 col-md-6 col-sm-12">
                     <h3 class="name-side-list">Bài viết khác</h3>
+                    <?php 
+                        //newest post query
+                        $newest_sl = "SELECT * FROM `posts` ORDER BY post_createdTime DESC LIMIT 5,4";
+                        $newest_rsl = mysqli_query($connect,$newest_sl);
+                        while($rec = mysqli_fetch_array($newest_rsl)){
+                    ?>
                     <div class="list-post-other-wrapper row">
                         <div class="other-thumb-post col-4">
-                            <a href="">
-                                <img src="./assets/image/11_2.jpg" alt="">
+                            <a href="./pages/post.php?post_id=<?=$rec['post_id']?>">
+                                <img src="./assets/image/<?=$rec['post_thumbnail']?>" alt="">
                             </a>
                         </div>
                         <div class="other-d-post col-8">
-                            <a href="" class="other-title-post">
-                                Nộp thuế thu nhập Youtube tại Việt Nam như thế nào?
+                            <a href="./pages/post.php?post_id=<?=$rec['post_id']?>" class="other-title-post">
+                                <?=$rec['post_title']?>
                             </a>
                             <div class="time-create-other-post">                   
                                 <span class="time-post">
-                                     1 giờ trước
+                                    <?=$rec['post_createdTime']?>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div class="list-post-other-wrapper row">
-                        <div class="other-thumb-post col-4">
-                            <a href="">
-                                <img src="./assets/image/11_2.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="other-d-post col-8">
-                            <a href="" class="other-title-post">
-                                Nộp thuế thu nhập Youtube tại Việt Nam như thế nào?
-                            </a>
-                            <div class="time-create-other-post">                   
-                                <span class="time-post">
-                                     1 giờ trước
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-post-other-wrapper row">
-                        <div class="other-thumb-post col-4">
-                            <a href="">
-                                <img src="./assets/image/11_2.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="other-d-post col-8">
-                            <a href="" class="other-title-post">
-                                Nộp thuế thu nhập Youtube tại Việt Nam như thế nào?
-                            </a>
-                            <div class="time-create-other-post">                   
-                                <span class="time-post">
-                                     1 giờ trước
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
