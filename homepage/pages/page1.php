@@ -23,22 +23,57 @@
                 </p>
             </div>
         <?php } }?>
+        <?php
+        if(isset($_GET['post_name'])){
+        $nameresult = $_GET['post_name'];
+        ?>
+           <div class="menu-tag">
+                <h4 class="name">
+                   Các kết quả cho từ "<?=$nameresult?>"
+                </h4>
+            </div>
+        <?php }?>
         </div>
         <div id="all-post-list-menu">
             <div class="row mg-t-25">
                 <div class="all-post-wrapper col-9 col-md-7 col-sm-12">
-                        <?php 
-                            if(isset($_GET["tag_id"]) && isset($_GET["parent_id"])){
-                            $tag_id = $_GET["tag_id"];
-                            $parent = $_GET["parent_id"];
-                            if($parent == 0){      
-                                $allpost_tag = "SELECT * from `posts` WHERE parent_id =".$tag_id;
+                        <?php
+                            //phan trang
+                            $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 1;
+                            $current_page = !empty($_GET['page']) ? $_GET['page'] : 1;
+                            $offset = ($current_page - 1) * $item_per_page;
+                            //tim kiem + phan trang
+                            
+                            if($search || isset($_GET['post-name'])){
+                                // if($parent == 0){      
+                                //     $allpost_tag = "SELECT * from `posts` WHERE parent_id ='$tag_id' AND `post_title` LIKE '%" . $search . "%' OR `post_description` LIKE '%" . $search . "%' LIMIT " . $item_per_page . " OFFSET " . $offset;
+                                //     $rslApt = mysqli_query($connect,$allpost_tag);
+                                //     $totalRecords = mysqli_query($connect, "SELECT * FROM `posts` WHERE parent_id ='$tag_id' AND `post_title` LIKE '%" . $search . "%' OR `post_description` LIKE '%" . $search . "%'");
+                                // } else{
+                                //     $allpost_tag = "SELECT * from `posts`,`tag` WHERE `posts`.tag_id=`tag`.tag_id and `posts`.tag_id ='$tag_id' AND `post_title` LIKE '%" . $search . "%' OR `post_description` LIKE '%" . $search . "%' LIMIT " . $item_per_page . " OFFSET " . $offset;
+                                //     $rslApt = mysqli_query($connect,$allpost_tag);
+                                //     $totalRecords = mysqli_query($connect,"SELECT * from `posts`,`tag` WHERE `posts`.tag_id=`tag`.tag_id and `posts`.tag_id ='$tag_id' AND `post_title` LIKE '%" . $search . "%' OR `post_description` LIKE '%" . $search . "%'");
+                                // }
+                                $allpost_tag = "SELECT * from `posts` WHERE post_title LIKE '%" . $search . "%' OR post_description LIKE '%" . $search . "%' ";
                                 $rslApt = mysqli_query($connect,$allpost_tag);
-                                $row = mysqli_num_rows($rslApt);
-                            } else{
-                                $allpost_tag = "SELECT * from `posts`,`tag` WHERE `posts`.tag_id=`tag`.tag_id and `posts`.tag_id =".$tag_id;
-                                $rslApt = mysqli_query($connect,$allpost_tag);
+                                $totalRecords = mysqli_query($connect,"SELECT * from `posts` WHERE post_title LIKE '%" . $search . "%' OR `post_description` LIKE '%" . $search . "%'");      
+                            }else{
+                                if(isset($_GET["tag_id"]) && isset($_GET["parent_id"])){
+                                    $tag_id = $_GET["tag_id"];
+                                    $parent = $_GET["parent_id"];
+                                if($parent == 0){      
+                                    $allpost_tag = "SELECT * from `posts` WHERE parent_id ='$tag_id' ORDER BY post_createdTime DESC LIMIT " . $item_per_page . " OFFSET " . $offset;
+                                    $rslApt = mysqli_query($connect,$allpost_tag);
+                                    $totalRecords = mysqli_query($connect,"SELECT * from `posts` WHERE parent_id =".$tag_id);
+                                } else{
+                                    $allpost_tag = "SELECT * from `posts`,`tag` WHERE `posts`.tag_id=`tag`.tag_id and `posts`.tag_id ='$tag_id' ORDER BY post_createdTime DESC LIMIT " . $item_per_page . " OFFSET " . $offset;
+                                    $rslApt = mysqli_query($connect,$allpost_tag);
+                                    $totalRecords = mysqli_query($connect,"SELECT * from `posts`,`tag` WHERE `posts`.tag_id=`tag`.tag_id and `posts`.tag_id =".$tag_id);
+                                }
                             }
+                            }
+                            $totalRecords = $totalRecords->num_rows;
+                            $totalPages = ceil($totalRecords / $item_per_page);
                             while($row = mysqli_fetch_array($rslApt)){ ?>
                                 <div class="item-all-post">
                                     <div class="row mg-t-25">
@@ -65,9 +100,11 @@
                                         </div>
                                     </div>
                                 </div>    
-                                <?php }} ?> 
-                </div>
-                        
+                                <?php } ?>
+                        <div style="text-align: center; width: 100%;" class="pagination">
+                            <?php include("../modules/pagination.php");     ?>
+                        </div>
+                    </div>                    
                 <div class="relate-posts mg-t-25 col-3 col-md-5 col-sm-12">
                     <div class="relate-posts-wrapper">
                         <h3 class="name-side-list">

@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     include("conn.php");
     $res=mysqli_query($connect,"select * from tag"); 
     $arr=[];
@@ -80,9 +81,30 @@
 					 ?>            
                   </div>
                   <!--/.nav-collapse -->
-               </div>
+                </div>
+                <div class="search-icon" onclick="toggleText()">             
+                    <span><i class="fas fa-search"></i></span>
+                </div>
+                <div id="search" style="display: none;">
+                    <form class="wrapper" method="GET" action="">
+                    <?php 
+                        $param = "";
+                    //Tim kiem
+                        $search = isset($_GET['post_name']) ? $_GET['post_name'] : "";
+                        if ($search) {               
+                            $where = "AND `title` LIKE '%" . $search . "%'";
+                            $param .= "post_name=" . $search . "&";
+                            header("location: ./pages/page1.php?".$param);
+                            // $sortParam = "post-name=" . $search . "&";
+                        }
+                    ?>
+                    <input type="text" class="search-input" placeholder="Tìm kiếm bài viết" name="post_name" value="<?= isset($_GET['post_name']) ? $_GET['post_name'] : ""; ?>">
+                    <!-- <input type="submit" class="search-btn" value="Tìm kiếm"><i class="fas fa-search"></i> -->
+                    <input type="submit" class="search-btn" value="Tìm kiếm">
+                    </form>
+                </div>
             </div>
-         </div>
+        </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="./assets/js/bootstrap.js"></script>  
@@ -385,6 +407,14 @@
         navbar.classList.remove("sticky");
     }
     }
+    function toggleText() {
+        var x = document.getElementById("search");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    } 
 </script>
 <script>
     $('.slick-slider').slick({

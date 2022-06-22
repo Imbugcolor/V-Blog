@@ -81,10 +81,32 @@
                   </div>
                   <!--/.nav-collapse -->
                </div>
+               <div class="search-icon" onclick="toggleText()">             
+                    <span><i class="fas fa-search"></i></span>
+                </div>
+               <div id="search" style="display: none;">
+                    <form class="wrapper" method="GET" action="">
+                        <?php 
+                            $param = "";
+                        //Tim kiem
+                            $search = isset($_GET['post_name']) ? $_GET['post_name'] : "";
+                            if ($search) {
+                                $where = "AND `title` LIKE '%" . $search . "%'";
+                                $param .= "post_name=" . $search . "&";
+                                // $sortParam = "post-name=" . $search . "&";
+                            }
+                        ?>
+                        <input type="text" class="search-input" placeholder="Tìm kiếm bài viết" name="post_name" value="<?= isset($_GET['post_name']) ? $_GET['post_name'] : ""; ?>">
+                        <!-- <input type="submit" class="search-btn" value="Tìm kiếm"><i class="fas fa-search"></i> -->
+                        <input type="submit" class="search-btn" value="Tìm kiếm">
+                    </form>
+                </div>
             </div>
          </div>
     </section>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.js"></script>  
     <script type="text/javascript" src="../assets/js/jquery.smartmenus.js"></script>
     <script type="text/javascript" src="../assets/js/jquery.smartmenus.bootstrap.js"></script>  
+    

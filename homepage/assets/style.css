@@ -61,8 +61,10 @@
 }
 #menu .menu-area {
     float: left;
-    display: inline;
+    display: flex;
     width: 100%;
+    position: relative;
+    justify-content: space-between;
 }
 #menu .menu-area .navbar-default {
     background-color: transparent;
@@ -70,6 +72,7 @@
     border-radius: 0;
     margin-bottom: 0;
     min-height: auto;
+    width: 100%;
 }
 #menu .menu-area .navbar-default .navbar-nav {
     display: inline-block;
@@ -104,6 +107,40 @@
     font-size: 16px;
     padding: 3px 20px;
     text-transform: uppercase;
+}
+.search-icon{
+    cursor: pointer;
+}
+.search-icon span{
+    padding: 10px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 22px;
+}
+#search{
+    padding: 20px 10px;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    z-index: 999;
+    background-color: #fff;
+    box-shadow: 0 1px 8px rgb(0 0 0 / 8%), 0 3px 4px rgb(0 0 0 / 8%), 0 3px 3px rgb(0 0 0 / 12%);
+}
+#search .search-input, #search .search-btn{
+    padding: 5px 10px;
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+#search .search-btn{
+    background-color: #000;
+    color: #fff;
+    transition: 0.5s;
+    font-weight: bold;
+}
+#search .search-btn:hover{
+    background-color: #0180c3;
+    color: #fff;
 }
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .sticky {
@@ -454,6 +491,9 @@
         width: 100%;
         max-height: 400px;
     }
+    .search-icon span{
+        line-height: 50px;
+    }
 }
 
 @media (max-width:740px){
@@ -478,6 +518,9 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+    .search-icon span{
+        line-height: 50px;
+    }
 }
 
 @media (max-width:500px){
@@ -492,6 +535,9 @@
     #page-view-container{
         padding-left: 15px;
         padding-right: 15px;
+    }
+    .search-icon span{
+        line-height: 50px;
     }
 }
 /* END Responsive */
