@@ -59,8 +59,20 @@
     <title>Blog IT</title>
 </head>
 <body>
-    <div id="banner" class="pd-l-50 pd-r-50">
-        <a href="#">V-BLOG</a>
+    <div id="header" class="pd-l-50 pd-r-50">
+        <div class="logo-header">
+            <a href="#">Blog IT</a>
+        </div>
+        <div class="user-wrapper">
+            <span><i class="far fa-user"></i></span>
+            <div class="login-section">
+                <a href="#">Đăng nhập</a>
+            </div>
+            <span>|</span>
+            <div class="signup-section">
+                <a href="#">Đăng ký</a>
+            </div>
+        </div>
     </div>
     <section id="menu">
          <div class="container">
@@ -116,7 +128,7 @@
                 <div class="new-post col-8 col-md-12 col-sm-12">
                     <?php 
                         //newest post query
-                        $newest_sl = "SELECT * FROM `posts`,`tag` WHERE `posts`.parent_id = `tag`.parent_id ORDER BY post_createdTime DESC LIMIT 1";
+                        $newest_sl = "SELECT * FROM `posts`,`tag` WHERE `posts`.parent_id = `tag`.parent_id AND `posts`.tag_id = `tag`.tag_id  ORDER BY post_createdTime DESC LIMIT 1";
                         $newest_rsl = mysqli_query($connect,$newest_sl);
                         while($rec = mysqli_fetch_array($newest_rsl)){
                     ?>
@@ -213,86 +225,28 @@
             </h3>
             <div class="list-post">
                 <div class="row">
+                    <?php 
+                        $tag_index = "SELECT * FROM `posts` WHERE `posts`.parent_id = 3 ORDER BY post_createdTime DESC LIMIT 6";
+                        $rsl_tagIndex = mysqli_query($connect,$tag_index);
+                    while($rec = mysqli_fetch_array($rsl_tagIndex)){
+                    ?>
                     <div class="post-item col-3 col-md-6 col-sm-12">
                         <div class="thumb-post-item">
-                            <a href="">
-                                <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
+                            <a href="./pages/post.php?post_id=<?=$rec['post_id']?>">
+                                <img src="./assets/image/<?=$rec['post_thumbnail']?>" alt="">
                             </a>
                         </div>
                         <div class="title-post-item">
-                            <a href="">Mua theme Newspaper: Theme hàng đầu cho các Bloger giá siêu rẻ – chỉ 250.000VND </a>
+                            <a href="./pages/post.php?post_id=<?=$rec['post_id']?>"><?=$rec['post_title']?></a>
                         </div>
                         <div class="author-post-item">
-                            <span>Nguyễn Văn A</span>
+                            <span><?=$rec['post_author']?></span>
                         </div>
                         <div class="time-post-item">                      
-                            <span>14/06/2022</span>
+                            <span><?=$rec['post_createdTime']?></span>
                         </div>
                     </div>
-                    <div class="post-item col-3 col-md-6 col-sm-12">
-                        <div class="thumb-post-item">
-                            <a href="">
-                                <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="title-post-item">
-                            <a href="">Mua theme Newspaper: Theme hàng đầu cho các Bloger giá siêu rẻ – chỉ 250.000VND </a>
-                        </div>
-                        <div class="author-post-item">
-                            <span>Nguyễn Văn A</span>
-                        </div>
-                        <div class="time-post-item">                      
-                            <span>14/06/2022</span>
-                        </div>
-                    </div>
-                    <div class="post-item col-3 col-md-6 col-sm-12">
-                        <div class="thumb-post-item">
-                            <a href="">
-                                <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="title-post-item">
-                            <a href="">Mua theme Newspaper: Theme hàng đầu cho các Bloger giá siêu rẻ – chỉ 250.000VND </a>
-                        </div>
-                        <div class="author-post-item">
-                            <span>Nguyễn Văn A</span>
-                        </div>
-                        <div class="time-post-item">                      
-                            <span>14/06/2022</span>
-                        </div>
-                    </div>
-                    <div class="post-item col-3 col-md-6 col-sm-12">
-                        <div class="thumb-post-item">
-                            <a href="">
-                                <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="title-post-item">
-                            <a href="">Mua theme Newspaper: Theme hàng đầu cho các Bloger giá siêu rẻ – chỉ 250.000VND </a>
-                        </div>
-                        <div class="author-post-item">
-                            <span>Nguyễn Văn A</span>
-                        </div>
-                        <div class="time-post-item">                      
-                            <span>14/06/2022</span>
-                        </div>
-                    </div>
-                    <div class="post-item col-3 col-md-6 col-sm-12">
-                        <div class="thumb-post-item">
-                            <a href="">
-                                <img src="./assets/image/khuyen-mai-momo.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="title-post-item">
-                            <a href="">Mua theme Newspaper: Theme hàng đầu cho các Bloger giá siêu rẻ – chỉ 250.000VND </a>
-                        </div>
-                        <div class="author-post-item">
-                            <span>Nguyễn Văn A</span>
-                        </div>
-                        <div class="time-post-item">                      
-                            <span>14/06/2022</span>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

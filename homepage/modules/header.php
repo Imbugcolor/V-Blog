@@ -58,8 +58,20 @@
     <title>Blog IT</title>
 </head>
 <body>
-    <div id="banner" class="pd-l-50 pd-r-50">
-        <a href="#">V-BLOG</a>
+    <div id="header" class="pd-l-50 pd-r-50">
+        <div class="logo-header">
+            <a href="#">Blog IT</a>
+        </div>
+        <div class="user-wrapper">
+            <span><i class="far fa-user"></i></span>
+            <div class="login-section">
+                <a href="#">Đăng nhập</a>
+            </div>
+            <span>|</span>
+            <div class="signup-section">
+                <a href="#">Đăng ký</a>
+            </div>
+        </div>
     </div>
     <section id="menu">
          <div class="container">
